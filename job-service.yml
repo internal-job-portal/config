@@ -1,5 +1,5 @@
 server:
-  port: ${SERVER_PORT:8080}
+  port: ${JOB_SERVICE_PORT:8083}
 
 spring:
   application:
@@ -7,13 +7,13 @@ spring:
   jpa:
     hibernate:
       ddl-auto: update
-
-eureka:
-  client:
-    service-url:
-      defaultZone: ${EUREKA_CLIENT_SERVICEURL_DEFAULTZONE:http://localhost:8761/eureka/}
-  instance:
-    instance-id: ${spring.application.name}:${random.uuid}
+  cloud:
+    discovery:
+      client:
+        simple:
+          instances:
+            candidate-service:
+              - uri: ${CANDIDATE_SERVICE_URI:http://localhost:8084}
 
 management:
   endpoints:
