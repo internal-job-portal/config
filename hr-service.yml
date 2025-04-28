@@ -8,8 +8,8 @@ spring:
     hibernate:
       ddl-auto: update
   kafka:
+    bootstrap-servers: ${KAFKA_BOOTSTRAP_SERVERS:kafka:9092}
     consumer:
-      bootstrap-servers: kafka:9092
       group-id: hr-service
       auto-offset-reset: earliest
       key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
